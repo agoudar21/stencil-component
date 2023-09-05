@@ -1,0 +1,242 @@
+// import { Component, h, State, Prop, Watch, Event, EventEmitter } from '@stencil/core';
+
+// @Component({
+//   tag: 'form-select',
+//   styleUrl: 'form-select.css',
+//   shadow: true,
+// })
+// export class FormSelect {
+//   @Prop() label: string;
+//   @Prop() options: string[] = [];
+//   @Prop() required: boolean;
+//   @Prop() value: string;
+//   @State() selectedValue: string = '';
+//   @State() isBlurred: boolean = false;
+//   @State() isDropdownOpen: boolean = false;
+
+//   @Event() formSelectChange: EventEmitter<string>; // Custom event for value change
+
+//   @Watch('value')
+//   valueChanged(newValue: string) {
+//     this.selectedValue = newValue;
+//   }
+
+//   toggleDropdown = () => {
+//     this.isDropdownOpen = !this.isDropdownOpen;
+//   };
+
+//   handleBlur = () => {
+//     this.isBlurred = true;
+//   };
+
+//   handleOptionClick = (option: string) => {
+//     this.selectedValue = option;
+//     this.formSelectChange.emit(this.selectedValue); // Emit the custom event on value change
+//     this.isDropdownOpen = false;
+//   };
+
+//   render() {
+//     const isValid = this.selectedValue.trim() !== '' || !this.required || !this.isBlurred;
+
+//     return (
+//       <div class={`select-container ${!isValid ? 'error' : ''}`}>
+//         <label class="select-label">
+//           {this.label}
+//           {this.required && <span>*</span>}
+//         </label>
+//         <div class={`dropdown ${this.isDropdownOpen ? 'show' : ''}`} tabIndex={0} onBlur={this.handleBlur}>
+//           <div class="selected-value" onClick={this.toggleDropdown}>
+//             {this.selectedValue}
+//             <div class="dropdown-arrow">▼</div>
+//           </div>
+//           <div class={`dropdown-list ${this.isDropdownOpen ? 'show' : ''}`}>
+//             {this.options.map((option, index) => (
+//               <div class="option" onClick={() => this.handleOptionClick(option)} key={index}>
+//                 {option}
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+
+// import { Component, h, State, Prop, Event, EventEmitter } from '@stencil/core';
+
+// @Component({
+//   tag: 'form-select',
+//   styleUrl: 'form-select.css',
+//   shadow: true,
+// })
+// export class FormSelect {
+//   @Prop() label: string;
+//   @Prop() options: string[] = [];
+//   @Prop() required: boolean;
+//   @Prop() value: string;
+//   @State() selectedValue: string = '';
+//   @State() isDropdownOpen: boolean = false;
+
+//   @Event() formSelectChange: EventEmitter<string>;
+
+//   toggleDropdown = () => {
+//       this.isDropdownOpen = !this.isDropdownOpen;
+//   };
+
+//   handleBlur = () => {
+//       this.isDropdownOpen = false;
+//   };
+
+//   handleOptionClick = (option: string) => {
+//     this.selectedValue = option;
+//     this.formSelectChange.emit(this.selectedValue);
+//     this.isDropdownOpen = false;
+//   };
+
+// render() {
+//   const isValid = this.selectedValue.trim() !== '' || !this.required ;
+//   const showDropdown = this.isDropdownOpen && isValid;
+
+//   return (
+//     <div class={`custom-dropdown ${!isValid ? 'error' : ''}`}>
+//       <label>
+//         {this.label}
+//         {this.required && <span>*</span>}
+//       </label>
+//       <div class={`selected-option ${!isValid ? 'error' : ''}`} onBlur={this.handleBlur} onClick={this.toggleDropdown}>
+//         {this.selectedValue || this.label}
+//         <div class="dropdown-arrow">▼</div>
+//       </div>
+//       <div class={`dropdown-options ${showDropdown ? 'show' : ''}`}>
+//         {this.options.map((option, index) => (
+//           <div class="option" onClick={() => this.handleOptionClick(option)} key={index}>
+//             {option}
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
+// }
+
+// import { Component, h, State, Prop, Event, EventEmitter} from '@stencil/core';
+
+// @Component({
+//   tag: 'form-select',
+//   styleUrl: 'form-select.css',
+//   shadow: true,
+// })
+// export class FormSelect {
+//   @Prop() label: string;
+//   @Prop() options: string[] = [];
+//   @Prop() required: boolean;
+//   @Prop() value: string;
+//   @State() selectedValue: string = '';
+//   @State() isDropdownOpen: boolean = false;
+
+//   @Event() formSelectChange: EventEmitter<string>;
+
+//   toggleDropdown = () => {
+//     this.isDropdownOpen = !this.isDropdownOpen;
+//   };
+
+//   handleOptionClick = (option: string) => {
+//     this.selectedValue = option;
+//     this.formSelectChange.emit(this.selectedValue);
+//     this.isDropdownOpen = false;
+//   };
+
+//   render() {
+//     const isValid = this.selectedValue.trim() !== '' || !this.required;
+//     const showDropdown = this.isDropdownOpen && isValid;
+
+//     return (
+//       <div class="custom-dropdown">
+//         <label>
+//           {this.label}
+//           {this.required && <span>*</span>}
+//         </label>
+//         <div
+//           class={`selected-option ${!isValid ? 'error' : ''}`}
+//           onClick={this.toggleDropdown}
+//         >
+//           {this.selectedValue || this.label}
+//           <div class="dropdown-arrow">▼</div>
+//         </div>
+//         <div class={`dropdown-options ${showDropdown ? 'show' : ''}`}>
+//           {this.options.map((option, index) => (
+//             <div class="option" onClick={() => this.handleOptionClick(option)} key={index}>
+//               {option}
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+
+
+import { Component, h, State, Prop, Event, EventEmitter } from '@stencil/core';
+
+@Component({
+  tag: 'form-select',
+  styleUrl: 'form-select.css',
+  shadow: true,
+})
+export class FormSelect {
+  @Prop() label: string;
+  @Prop() options: string[] = [];
+  @Prop() required: boolean;
+  @Prop() value: string;
+  @State() selectedValue: string = '';
+  @State() isDropdownOpen: boolean = false;
+  @State() isBlurred: boolean = false;
+
+  @Event() formSelectChange: EventEmitter<string>;
+
+  toggleDropdown = () => {
+    if (!this.isBlurred) {
+      this.isDropdownOpen = !this.isDropdownOpen;
+    }
+  };
+
+  handleBlur = () => {
+    if (!this.selectedValue) {
+      this.isBlurred = true;
+      this.isDropdownOpen = false;
+    }
+  };
+
+  handleOptionClick = (option: string) => {
+    this.selectedValue = option;
+    this.formSelectChange.emit(this.selectedValue);
+    this.isBlurred = false;
+    this.isDropdownOpen = false;
+  };
+
+  render() {
+    const isValid = this.selectedValue.trim() !== '' || !this.required || !this.isBlurred;
+    const showDropdown = this.isDropdownOpen && isValid;
+
+    return (
+      <div class={`custom-dropdown ${!isValid ? 'error' : ''}`}>
+        <label>
+          {this.label}
+          {this.required && <span>*</span>}
+        </label>
+        <div class="selected-option" onClick={this.toggleDropdown}>
+          {this.selectedValue || this.label}
+          <div class="dropdown-arrow">▼</div>
+        </div>
+        <div class={`dropdown-options ${showDropdown ? 'show' : ''}`}>
+          {this.options.map((option, index) => (
+            <div class="option" onClick={() => this.handleOptionClick(option)} key={index}>
+              {option}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
+

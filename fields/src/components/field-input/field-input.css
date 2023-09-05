@@ -1,0 +1,50 @@
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.label {
+  font-size: 1.2rem;
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: top 0.2s, font-size 0.2s;
+}
+
+label.moved {
+  top: 0;
+  left: 8px;
+  font-size: 1rem;
+  padding: 2px 5px;
+  background-color: #ffffff;
+}
+
+input {
+  padding: 10px;
+  border-radius: 3px;
+  font-size: 16px;
+  width: 30rem;
+  border: 1px solid #ccc;
+  transition: border 0.2s;
+}
+
+input.focused {
+  border: 1px solid blue; /* Change this color to your desired focus color */
+}
+
+.invalid {
+  border: 1px solid rgb(201, 42, 42);
+}
+
+.error-message {
+  margin-top: 4px;
+  color: rgb(201, 42, 42);
+}
