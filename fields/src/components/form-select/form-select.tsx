@@ -185,14 +185,14 @@ import { Component, h, State, Prop, Event, EventEmitter } from '@stencil/core';
 })
 export class FormSelect {
   @Prop() label: string;
-  @Prop() options: string[] = [];
+  @Prop() options: string[]|number[] = [];
   @Prop() required: boolean;
-  @Prop() value: string;
-  @State() selectedValue: string = '';
+  @Prop() value: string|number;
+  @State() selectedValue: string|number;
   @State() isDropdownOpen: boolean = false;
   @State() isBlurred: boolean = false;
 
-  @Event() formSelectChange: EventEmitter<string>;
+  @Event() formSelectChange: EventEmitter<string|number>;
 
   toggleDropdown = () => {
     if (!this.isBlurred) {
@@ -207,7 +207,7 @@ export class FormSelect {
     }
   };
 
-  handleOptionClick = (option: string) => {
+  handleOptionClick = (option: string|number) => {
     this.selectedValue = option;
     this.formSelectChange.emit(this.selectedValue);
     this.isBlurred = false;
@@ -215,14 +215,14 @@ export class FormSelect {
   };
 
   render() {
-    const isValid = this.selectedValue.trim() !== '' || !this.required || !this.isBlurred;
+    const isValid = !this.selectedValue || !this.required || !this.isBlurred;
     const showDropdown = this.isDropdownOpen && isValid;
 
     return (
       <div class={`custom-dropdown ${!isValid ? 'error' : ''}`}>
-        <label>
+        <label class="label">
           {this.label}
-          {this.required && <span>*</span>}
+          {this.required && <span style={{color:"red"}}>*</span>}
         </label>
         <div class="selected-option" onClick={this.toggleDropdown}>
           {this.selectedValue || this.label}

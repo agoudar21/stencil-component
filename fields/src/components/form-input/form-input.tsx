@@ -10,7 +10,7 @@ export class FormInput {
   @Prop() name: string;
   @Prop() type: string;
   @Prop() required: boolean;
-  @Prop() value: string;
+  @Prop() value: string | number;
   @Prop() pattern: string;
   @Event() inputChange: EventEmitter;
 
@@ -18,8 +18,15 @@ export class FormInput {
   @State() isValid: boolean = true;
   @State() isBlurred: boolean = false;
 
+  // handleBlur = () => {
+  //   this.isBlurred = true;
+  //   this.validateInput(this.inputValue);
+  // };
   handleBlur = () => {
     this.isBlurred = true;
+    if (this.inputValue.trim() === '') {
+      this.isValid = false;
+    }
     this.validateInput(this.inputValue);
   };
 
@@ -42,9 +49,9 @@ export class FormInput {
   render() {
     return (
       <div class="inputs">
-        <label>
+        <label class="label">
           {this.label}
-          {this.required && <span>*</span>}
+          {this.required && <span style={{color:"red"}}>*</span>}
         </label>
         <input
           class={`${this.isBlurred && !this.isValid ? 'invalid' : ''}`}

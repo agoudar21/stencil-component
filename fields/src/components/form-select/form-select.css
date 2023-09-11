@@ -2,7 +2,8 @@
   position: relative;
   display: inline-block;
   font-family: Arial, sans-serif;
-  width: 15rem;
+  width: 30%;
+  margin: 0.5rem ;
 }
 .dropdown-arrow{
   position: absolute;
@@ -15,7 +16,9 @@
   color: rgb(0, 0, 0); 
   pointer-events: none; 
 }
-
+.label{
+  margin: 5px 0;
+}
 .selected-option {
   position: relative;
   padding: 8px;
@@ -35,7 +38,7 @@
   border: 1px solid #ccc;
   background-color: #ffffff;
   z-index: 1;
-  width: 16rem;
+  width: 103%;
 }
 
 .dropdown-options.show {

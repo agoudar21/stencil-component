@@ -1,20 +1,33 @@
-.inputs{
+.inputs {
   display: flex;
   flex-direction: column;
-  width: 25rem;
+  width: 95vw;
+  margin: 0.5rem ;
 }
-label{
+
+label {
   font-size: 18px;
   margin-bottom: 2px;
 }
-input{
+
+input {
   padding: 8px;
   border-radius: 3px;
   font-size: 16px;
+ 
+  border: 1px solid #ccc; 
 }
+.label{
+  margin: 5px 0;
+}
+.focused {
+  border: 1px solid rgb(241, 109, 47) !important;
+}
+
 .invalid {
   border: 1px solid rgb(201, 42, 42);
 }
-.error-message{
+
+.error-message {
   color: rgb(201, 42, 42);
 }

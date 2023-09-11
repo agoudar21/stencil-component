@@ -24,13 +24,13 @@ export namespace Components {
         "pattern": string;
         "required": boolean;
         "type": string;
-        "value": string;
+        "value": string | number;
     }
     interface FormSelect {
         "label": string;
-        "options": string[];
+        "options": string[]|number[];
         "required": boolean;
-        "value": string;
+        "value": string|number;
     }
     interface PersonalDetails {
     }
@@ -107,14 +107,14 @@ declare namespace LocalJSX {
         "pattern"?: string;
         "required"?: boolean;
         "type"?: string;
-        "value"?: string;
+        "value"?: string | number;
     }
     interface FormSelect {
         "label"?: string;
-        "onFormSelectChange"?: (event: FormSelectCustomEvent<string>) => void;
-        "options"?: string[];
+        "onFormSelectChange"?: (event: FormSelectCustomEvent<string|number>) => void;
+        "options"?: string[]|number[];
         "required"?: boolean;
-        "value"?: string;
+        "value"?: string|number;
     }
     interface PersonalDetails {
     }

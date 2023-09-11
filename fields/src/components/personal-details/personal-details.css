@@ -3,7 +3,22 @@
   margin-top: 10px;
 }
 .form-input, .form-select , .btn{
-  width: 100%;
+  width: 105vw;
   margin-left: 2rem;
   margin-top: 1rem;
+}
+.label{
+  margin: 5px 0;
+}
+.btn{
+  width: 95vw;
+  margin: 0.5rem 2.5rem;
+  padding: 11px;
+  background-color: rgb(241, 136, 50);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 17px;
+  font-weight: 580;
+  letter-spacing: 1.5px;
 }
