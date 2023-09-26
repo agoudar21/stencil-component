@@ -10,6 +10,11 @@ export namespace Components {
         "label": string;
         "options": string[];
     }
+    interface FSelect {
+        "label": string;
+        "options": string[];
+        "selectedOption": string;
+    }
     interface FieldInput {
         "label": string;
         "name": string;
@@ -17,6 +22,10 @@ export namespace Components {
         "required": boolean;
         "type": string;
         "value": string;
+    }
+    interface FormCheckbox {
+        "checked": boolean;
+        "label": string;
     }
     interface FormInput {
         "label": string;
@@ -28,16 +37,36 @@ export namespace Components {
     }
     interface FormSelect {
         "label": string;
-        "options": string[]|number[];
+        "options": string[] | number[];
         "required": boolean;
-        "value": string|number;
+        "value": string | number;
+    }
+    interface InputNew {
+        "errMessage": string;
+        "formErrors": { [key: string]: string };
+        "message": string;
+        "name": string;
+        "pattern": string;
+        "placeholder": string;
+        "required": boolean;
+        "value": string;
+        "width": number;
     }
     interface PersonalDetails {
+        "selectedLanguage": string;
     }
+}
+export interface FSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLFSelectElement;
 }
 export interface FieldInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLFieldInputElement;
+}
+export interface FormCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLFormCheckboxElement;
 }
 export interface FormInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -47,6 +76,10 @@ export interface FormSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLFormSelectElement;
 }
+export interface InputNewCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLInputNewElement;
+}
 declare global {
     interface HTMLCustomSelectElement extends Components.CustomSelect, HTMLStencilElement {
     }
@@ -54,11 +87,23 @@ declare global {
         prototype: HTMLCustomSelectElement;
         new (): HTMLCustomSelectElement;
     };
+    interface HTMLFSelectElement extends Components.FSelect, HTMLStencilElement {
+    }
+    var HTMLFSelectElement: {
+        prototype: HTMLFSelectElement;
+        new (): HTMLFSelectElement;
+    };
     interface HTMLFieldInputElement extends Components.FieldInput, HTMLStencilElement {
     }
     var HTMLFieldInputElement: {
         prototype: HTMLFieldInputElement;
         new (): HTMLFieldInputElement;
+    };
+    interface HTMLFormCheckboxElement extends Components.FormCheckbox, HTMLStencilElement {
+    }
+    var HTMLFormCheckboxElement: {
+        prototype: HTMLFormCheckboxElement;
+        new (): HTMLFormCheckboxElement;
     };
     interface HTMLFormInputElement extends Components.FormInput, HTMLStencilElement {
     }
@@ -72,6 +117,12 @@ declare global {
         prototype: HTMLFormSelectElement;
         new (): HTMLFormSelectElement;
     };
+    interface HTMLInputNewElement extends Components.InputNew, HTMLStencilElement {
+    }
+    var HTMLInputNewElement: {
+        prototype: HTMLInputNewElement;
+        new (): HTMLInputNewElement;
+    };
     interface HTMLPersonalDetailsElement extends Components.PersonalDetails, HTMLStencilElement {
     }
     var HTMLPersonalDetailsElement: {
@@ -80,9 +131,12 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "custom-select": HTMLCustomSelectElement;
+        "f-select": HTMLFSelectElement;
         "field-input": HTMLFieldInputElement;
+        "form-checkbox": HTMLFormCheckboxElement;
         "form-input": HTMLFormInputElement;
         "form-select": HTMLFormSelectElement;
+        "input-new": HTMLInputNewElement;
         "personal-details": HTMLPersonalDetailsElement;
     }
 }
@@ -90,6 +144,12 @@ declare namespace LocalJSX {
     interface CustomSelect {
         "label"?: string;
         "options"?: string[];
+    }
+    interface FSelect {
+        "label"?: string;
+        "onSelectChange"?: (event: FSelectCustomEvent<any>) => void;
+        "options"?: string[];
+        "selectedOption"?: string;
     }
     interface FieldInput {
         "label"?: string;
@@ -99,6 +159,11 @@ declare namespace LocalJSX {
         "required"?: boolean;
         "type"?: string;
         "value"?: string;
+    }
+    interface FormCheckbox {
+        "checked"?: boolean;
+        "label"?: string;
+        "onCheckboxChange"?: (event: FormCheckboxCustomEvent<boolean>) => void;
     }
     interface FormInput {
         "label"?: string;
@@ -111,18 +176,34 @@ declare namespace LocalJSX {
     }
     interface FormSelect {
         "label"?: string;
-        "onFormSelectChange"?: (event: FormSelectCustomEvent<string|number>) => void;
-        "options"?: string[]|number[];
+        "onFormSelectChange"?: (event: FormSelectCustomEvent<string | number>) => void;
+        "options"?: string[] | number[];
         "required"?: boolean;
-        "value"?: string|number;
+        "value"?: string | number;
+    }
+    interface InputNew {
+        "errMessage"?: string;
+        "formErrors"?: { [key: string]: string };
+        "message"?: string;
+        "name"?: string;
+        "onChangeInput"?: (event: InputNewCustomEvent<string>) => void;
+        "pattern"?: string;
+        "placeholder"?: string;
+        "required"?: boolean;
+        "value"?: string;
+        "width"?: number;
     }
     interface PersonalDetails {
+        "selectedLanguage"?: string;
     }
     interface IntrinsicElements {
         "custom-select": CustomSelect;
+        "f-select": FSelect;
         "field-input": FieldInput;
+        "form-checkbox": FormCheckbox;
         "form-input": FormInput;
         "form-select": FormSelect;
+        "input-new": InputNew;
         "personal-details": PersonalDetails;
     }
 }
@@ -131,9 +212,12 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "custom-select": LocalJSX.CustomSelect & JSXBase.HTMLAttributes<HTMLCustomSelectElement>;
+            "f-select": LocalJSX.FSelect & JSXBase.HTMLAttributes<HTMLFSelectElement>;
             "field-input": LocalJSX.FieldInput & JSXBase.HTMLAttributes<HTMLFieldInputElement>;
+            "form-checkbox": LocalJSX.FormCheckbox & JSXBase.HTMLAttributes<HTMLFormCheckboxElement>;
             "form-input": LocalJSX.FormInput & JSXBase.HTMLAttributes<HTMLFormInputElement>;
             "form-select": LocalJSX.FormSelect & JSXBase.HTMLAttributes<HTMLFormSelectElement>;
+            "input-new": LocalJSX.InputNew & JSXBase.HTMLAttributes<HTMLInputNewElement>;
             "personal-details": LocalJSX.PersonalDetails & JSXBase.HTMLAttributes<HTMLPersonalDetailsElement>;
         }
     }

@@ -17,6 +17,7 @@ export class FormInput {
   @State() inputValue: string = '';
   @State() isValid: boolean = true;
   @State() isBlurred: boolean = false;
+  
 
   // handleBlur = () => {
   //   this.isBlurred = true;
@@ -67,3 +68,6 @@ export class FormInput {
     );
   }
 }
+
+
+

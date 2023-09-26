@@ -1,3 +1,56 @@
-:host {
+/* form-checkbox.css */
+.stylish-form {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 0.5rem;
+}
+input{
+  cursor: pointer;
+}
+label{
+  cursor: pointer;
+}
+.stylish-ds[data-type="checkbox"] {
+  position: relative;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-right: 1rem;
+  border: 1px solid #000;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.stylish-ds[data-type="checkbox"] input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+.checkbox {
+  width: 100%;
+  height: 100%;
+  background-color: #fffcfb;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.checkmark {
+  color: white;
+  font-size: 1rem;
+  margin-bottom:1px;
+  display: none;
+}
+
+.stylish-ds[data-type="checkbox"].checked .checkmark {
   display: block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 5px;
+  background-color: #ff671b;
+  border: 3px solid #ff671b;
 }
