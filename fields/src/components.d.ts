@@ -41,17 +41,6 @@ export namespace Components {
         "required": boolean;
         "value": string | number;
     }
-    interface InputNew {
-        "errMessage": string;
-        "formErrors": { [key: string]: string };
-        "message": string;
-        "name": string;
-        "pattern": string;
-        "placeholder": string;
-        "required": boolean;
-        "value": string;
-        "width": number;
-    }
     interface PersonalDetails {
         "selectedLanguage": string;
     }
@@ -75,10 +64,6 @@ export interface FormInputCustomEvent<T> extends CustomEvent<T> {
 export interface FormSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLFormSelectElement;
-}
-export interface InputNewCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLInputNewElement;
 }
 declare global {
     interface HTMLCustomSelectElement extends Components.CustomSelect, HTMLStencilElement {
@@ -117,12 +102,6 @@ declare global {
         prototype: HTMLFormSelectElement;
         new (): HTMLFormSelectElement;
     };
-    interface HTMLInputNewElement extends Components.InputNew, HTMLStencilElement {
-    }
-    var HTMLInputNewElement: {
-        prototype: HTMLInputNewElement;
-        new (): HTMLInputNewElement;
-    };
     interface HTMLPersonalDetailsElement extends Components.PersonalDetails, HTMLStencilElement {
     }
     var HTMLPersonalDetailsElement: {
@@ -136,7 +115,6 @@ declare global {
         "form-checkbox": HTMLFormCheckboxElement;
         "form-input": HTMLFormInputElement;
         "form-select": HTMLFormSelectElement;
-        "input-new": HTMLInputNewElement;
         "personal-details": HTMLPersonalDetailsElement;
     }
 }
@@ -181,18 +159,6 @@ declare namespace LocalJSX {
         "required"?: boolean;
         "value"?: string | number;
     }
-    interface InputNew {
-        "errMessage"?: string;
-        "formErrors"?: { [key: string]: string };
-        "message"?: string;
-        "name"?: string;
-        "onChangeInput"?: (event: InputNewCustomEvent<string>) => void;
-        "pattern"?: string;
-        "placeholder"?: string;
-        "required"?: boolean;
-        "value"?: string;
-        "width"?: number;
-    }
     interface PersonalDetails {
         "selectedLanguage"?: string;
     }
@@ -203,7 +169,6 @@ declare namespace LocalJSX {
         "form-checkbox": FormCheckbox;
         "form-input": FormInput;
         "form-select": FormSelect;
-        "input-new": InputNew;
         "personal-details": PersonalDetails;
     }
 }
@@ -217,7 +182,6 @@ declare module "@stencil/core" {
             "form-checkbox": LocalJSX.FormCheckbox & JSXBase.HTMLAttributes<HTMLFormCheckboxElement>;
             "form-input": LocalJSX.FormInput & JSXBase.HTMLAttributes<HTMLFormInputElement>;
             "form-select": LocalJSX.FormSelect & JSXBase.HTMLAttributes<HTMLFormSelectElement>;
-            "input-new": LocalJSX.InputNew & JSXBase.HTMLAttributes<HTMLInputNewElement>;
             "personal-details": LocalJSX.PersonalDetails & JSXBase.HTMLAttributes<HTMLPersonalDetailsElement>;
         }
     }
